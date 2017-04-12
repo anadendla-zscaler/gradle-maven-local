@@ -1,0 +1,19 @@
+plugins {
+    id "java-gradle-plugin"
+}
+apply plugin: 'maven-publish'
+
+version = '0.1-SNAPSHOT'
+
+gradlePlugin {
+    plugins {
+        fooPlugin {
+            id = "fooPlugin"
+            implementationClass = "com.example.plugin.FooPlugin"
+        }
+    }
+}
+
+task cleanRepo(type: Exec) {
+    commandLine '/bin/bash', '-c', 'rm -rfv $HOME/.m2/repository/com/example'
+}
