@@ -14,6 +14,17 @@ gradlePlugin {
     }
 }
 
+println('$HOME is ' + System.getenv('HOME'))
+
+def localMavenDestination = '$HOME/.m2/repository/com/example'
+
 task cleanRepo(type: Exec) {
-    commandLine '/bin/bash', '-c', 'rm -rfv $HOME/.m2/repository/com/example'
+    commandLine '/bin/bash', '-c', "rm -rfv $localMavenDestination ${rootProject.file('com')} ${rootProject.file('fooPlugin')}"
 }
+
+task showMavenLocal(type: Exec) {
+    commandLine '/bin/bash', '-c', "ls $localMavenDestination"
+    ignoreExitValue = true
+}
+
+tasks.publishToMavenLocal.finalizedBy(showMavenLocal)
