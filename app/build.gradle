@@ -1,17 +1,4 @@
-buildscript {
-    repositories {
-        mavenLocal()
-    }
-    dependencies {
-        //classpath 'com.example:plugin:0.1-SNAPSHOT'
-    }
-}
-apply plugin: 'java'
-
-repositories {
-    mavenLocal()
-}
-
 dependencies {
-    compile 'com.example:plugin:0.1-SNAPSHOT'
+    compile 'com.example:myLib:1.1'
+    compile 'com.example:anotherLib:1.1'
 }

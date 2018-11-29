@@ -1,4 +1,5 @@
-include 'plugin'
+include 'myLib'
+include 'anotherLib'
 include 'app'
 
 rootProject.name = 'gradle-maven-local'

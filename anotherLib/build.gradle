@@ -1,0 +1,16 @@
+jar {
+    zip64 = true
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+        	artifactId = "anotherLib"
+            groupId = "com.example"
+            version = "1.1"
+            from components.java
+        }
+    }
+}
+
+tasks.publishToMavenLocal.finalizedBy(showMavenLocal)

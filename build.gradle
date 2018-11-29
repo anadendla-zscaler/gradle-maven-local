@@ -1,11 +1,18 @@
-plugins {
-    id 'com.gradle.build-scan' version '1.6'
-}
+allprojects {
+	apply plugin: 'java'
+    apply plugin: 'maven-publish'
+	def localMavenDestination = '$HOME/.m2/repository/com/example'
 
-buildScan {
-    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
-    licenseAgree = 'yes'
-}
-subprojects {
-    group = 'com.example'
+	task cleanRepo(type: Exec) {
+	    commandLine '/bin/bash', '-c', "rm -rfv $localMavenDestination"
+	}
+
+	task showMavenLocal(type: Exec) {
+	    commandLine '/bin/bash', '-c', "ls $localMavenDestination"
+	    ignoreExitValue = true
+	}
+
+	repositories {
+	    mavenLocal()
+	}
 }
